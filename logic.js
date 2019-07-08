@@ -10,11 +10,9 @@ id: "mapbox.streets",
 accessToken: API_KEY
 }).addTo(myMap);
 
-// var url="https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.geojson"
-// d3.json(url, function(response) {
+
 function createCircles(response) {
     var earthquakes = response.features
-    // earthquakeCircles = []
 
     function getColor(mag) {
       if (mag<1) {color = "#adff2f"}
@@ -40,10 +38,10 @@ function createCircles(response) {
             color: color,
             radius: mag *20000
         }).bindPopup("<h1>"+properties.place
-        +"</h1><hr><h3>Time:"+properties.time
-        +"</h3><hr><h3>Magnitude:"+properties.mag
-        +"</h3><hr><h3>Url:"+properties.url)
-        .addTo(myMap)
+        +"</h1><hr><h3>Time: "+properties.time
+        +"</h3><hr><h3>Magnitude: "+properties.mag
+        // +"</h3><hr><h3>Url: "+properties.url
+        ).addTo(myMap)
     }
 
     var legend = L.control({ position: "bottomright" });
@@ -68,7 +66,7 @@ function createCircles(response) {
     // Adding legend to the map
     legend.addTo(myMap);
 }
-// })
+
 
 var url="https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.geojson"
 d3.json(url,createCircles)
